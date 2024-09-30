@@ -1,0 +1,32 @@
+{
+	"info": {
+		"title": "Accounting Swagger",
+		"version": "1.0",
+		"description": "Swagger",
+		"termsOfService": "#",
+		"license": {
+			"name": "MIT",
+			"url": "https://es.wikipedia.org/wiki/Licencia_MIT"
+		},
+		"contact": {
+			"name": "Scodus",
+			"url": "https://scodus.com",
+			"email": "scodusnp@gmail.com"
+		},
+		"xLogo": {
+			"url": "https://github.com/joolfe/logoBanner.png",
+			"backgroundColor": "#FFFFFF",
+			"altText": "logo"
+		}
+	},
+	"servers": [
+		{
+			"url": "https://kailashmun.com",
+			"description": "kailashmun server"
+		},
+		{
+			"url": "https://tinpatanmun.com",
+			"description": "tinpatanmun server"
+		}
+	]
+}

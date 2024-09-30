@@ -1,0 +1,4226 @@
+{
+	"info": {
+		"_postman_id": "1d422aed-d094-4dbc-8b35-d49121cd9bb9",
+		"name": "municipal-tenancy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34655126",
+		"_collection_link": "https://bikash-projects.postman.co/workspace/Bikash's-Workspace~07b4d747-08b6-4eac-9f94-41a4bad205fa/collection/15009917-1d422aed-d094-4dbc-8b35-d49121cd9bb9?action=share&source=collection_link&creator=34655126"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Authentication",
+					"item": [
+						{
+							"name": "login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = pm.response.json()",
+											"pm.environment.set('token', response.data.token)",
+											"pm.environment.set('refresh_token', response.data.refresh_token)"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "scodus@admin.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "device_token",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "password",
+											"value": "P@ssw0rd",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "login ward",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = pm.response.json()",
+											"pm.environment.set('token', response.data.token)",
+											"pm.environment.set('refresh_token', response.data.refresh_token)"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "rmurray@example.net",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "device_token",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "ward1.{{url}}/api/admin/login",
+									"host": [
+										"ward1",
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "logout",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/logout",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "change old password",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "old_password",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "P@ssw0rd",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "P@ssw0rd",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/change-password",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"change-password"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "crm type",
+					"item": [
+						{
+							"name": "list",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/admin/crm-type",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"crm-type"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "store",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "title",
+											"type": "text"
+										},
+										{
+											"key": "nepali_title",
+											"value": "nepali title",
+											"type": "text"
+										},
+										{
+											"key": "icon",
+											"type": "file",
+											"src": "/C:/Users/user--49/Pictures/mountains-276995_960_720.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/crm-type",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"crm-type"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "title edit",
+											"type": "text"
+										},
+										{
+											"key": "nepali_title",
+											"value": "nepali title edit",
+											"type": "text"
+										},
+										{
+											"key": "icon",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "_method",
+											"value": "patch",
+											"type": "text"
+										},
+										{
+											"key": "remove_icon",
+											"value": "",
+											"description": "nullable, 1 for removing icon",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/crm-type/:crm_type_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"crm-type",
+										":crm_type_id"
+									],
+									"variable": [
+										{
+											"key": "crm_type_id",
+											"value": "9"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/crm-type/:crm_type_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"crm-type",
+										":crm_type_id"
+									],
+									"variable": [
+										{
+											"key": "crm_type_id",
+											"value": "9"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "crm",
+					"item": [
+						{
+							"name": "list",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/admin/crm/:crm_type_id?start_date=2023-05-29&end_date=2023-06-28",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"crm",
+										":crm_type_id"
+									],
+									"query": [
+										{
+											"key": "start_date",
+											"value": "2023-05-29"
+										},
+										{
+											"key": "end_date",
+											"value": "2023-06-28"
+										}
+									],
+									"variable": [
+										{
+											"key": "crm_type_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "single show",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/admin/crm/:crm_id/show",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"crm",
+										":crm_id",
+										"show"
+									],
+									"variable": [
+										{
+											"key": "crm_id",
+											"value": "15"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "store",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "title",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "description",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/user--49/Pictures/alberta-2297204_960_720.jpg"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/user--49/Pictures/mountains-736886_960_720.jpg"
+										},
+										{
+											"key": "sub_title",
+											"value": "sub-title",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/crm/:crm_type_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"crm",
+										":crm_type_id"
+									],
+									"variable": [
+										{
+											"key": "crm_type_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "patch",
+											"type": "text"
+										},
+										{
+											"key": "title",
+											"value": "title edit",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "description edit",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "remove_image",
+											"value": "",
+											"description": "nullable, 1 for removing icon",
+											"type": "text"
+										},
+										{
+											"key": "remove_file",
+											"value": "",
+											"description": "nullable, 1 for removing icon",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/crm/:crm_id/:crm_type_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"crm",
+										":crm_id",
+										":crm_type_id"
+									],
+									"variable": [
+										{
+											"key": "crm_id",
+											"value": "15"
+										},
+										{
+											"key": "crm_type_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/crm/:crm_id/:crm_type_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"crm",
+										":crm_id",
+										":crm_type_id"
+									],
+									"variable": [
+										{
+											"key": "crm_id",
+											"value": "15"
+										},
+										{
+											"key": "crm_type_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "department",
+					"item": [
+						{
+							"name": "list",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/admin/department",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"department"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "single show",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/admin/department/:department_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"department",
+										":department_id"
+									],
+									"variable": [
+										{
+											"key": "department_id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "service",
+					"item": [
+						{
+							"name": "list",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/admin/service?department_id=2",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"service"
+									],
+									"query": [
+										{
+											"key": "department_id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "single show",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/admin/service/:service_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"service",
+										":service_id"
+									],
+									"variable": [
+										{
+											"key": "service_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "store",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "title",
+											"type": "text"
+										},
+										{
+											"key": "department_id",
+											"value": "",
+											"description": "nullable",
+											"type": "text"
+										},
+										{
+											"key": "cost",
+											"value": "123",
+											"type": "text"
+										},
+										{
+											"key": "member[]",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "member[]",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "required_document",
+											"value": "sa df",
+											"description": "text",
+											"type": "text"
+										},
+										{
+											"key": "supporting_document",
+											"value": "asd f",
+											"description": "text",
+											"type": "text"
+										},
+										{
+											"key": "process",
+											"value": "sadf asd",
+											"description": "text",
+											"type": "text"
+										},
+										{
+											"key": "time",
+											"value": "a sdf",
+											"description": "text",
+											"type": "text"
+										},
+										{
+											"key": "icon",
+											"type": "file",
+											"src": "/C:/Users/user--49/Pictures/mountains-736886_960_720.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/service",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"service"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "patch",
+											"type": "text"
+										},
+										{
+											"key": "title",
+											"value": "title edit",
+											"type": "text"
+										},
+										{
+											"key": "department_id",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "cost",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "member[]",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "member[]",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "required_document",
+											"value": "",
+											"description": "text",
+											"type": "text"
+										},
+										{
+											"key": "supporting_document",
+											"value": "",
+											"description": "text",
+											"type": "text"
+										},
+										{
+											"key": "process",
+											"value": "",
+											"description": "text",
+											"type": "text"
+										},
+										{
+											"key": "time",
+											"value": "",
+											"description": "text",
+											"type": "text"
+										},
+										{
+											"key": "icon",
+											"type": "file",
+											"src": []
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/service/:service_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"service",
+										":service_id"
+									],
+									"variable": [
+										{
+											"key": "service_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/service/:service_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"service",
+										":service_id"
+									],
+									"variable": [
+										{
+											"key": "service_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "complain",
+					"item": [
+						{
+							"name": "list",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/admin/complain",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"complain"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "single show",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/admin/complain/:complain_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"complain",
+										":complain_id"
+									],
+									"variable": [
+										{
+											"key": "complain_id",
+											"value": "12"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Complain Type",
+					"item": [
+						{
+							"name": "list",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/admin/complain-type",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"complain-type"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "single show",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/admin/complain-type/:complain_type_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"complain-type",
+										":complain_type_id"
+									],
+									"variable": [
+										{
+											"key": "complain_type_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "store",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "complain type 66",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "active",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/complain-type",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"complain-type"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "patch",
+											"type": "text"
+										},
+										{
+											"key": "title",
+											"value": "complain type 5 ed0",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "inactive",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/complain-type/:complain_type_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"complain-type",
+										":complain_type_id"
+									],
+									"variable": [
+										{
+											"key": "complain_type_id",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/complain-type/:complain_type_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"complain-type",
+										":complain_type_id"
+									],
+									"variable": [
+										{
+											"key": "complain_type_id",
+											"value": "6"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "status change",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "patch",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "active",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/complain-type/status/:complain_type_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"complain-type",
+										"status",
+										":complain_type_id"
+									],
+									"variable": [
+										{
+											"key": "complain_type_id",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "member",
+					"item": [
+						{
+							"name": "list",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/admin/member",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"member"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "user profile",
+					"item": [
+						{
+							"name": "get update",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/profile",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"profile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "profile update",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "testtest",
+											"description": "required | send old value if no changes needed",
+											"type": "text"
+										},
+										{
+											"key": "number",
+											"value": "234562345ww",
+											"description": "required | send old value if no changes needed",
+											"type": "text"
+										},
+										{
+											"key": "say",
+											"value": "qqwe",
+											"description": "nullable",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/profile",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"profile"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "in out status",
+					"item": [
+						{
+							"name": "update",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "status",
+											"value": "1",
+											"description": "1 || 0",
+											"type": "text"
+										},
+										{
+											"key": "reason",
+											"value": "a valid reason",
+											"description": "write any reason here",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/in-out-status",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"in-out-status"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get status",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/in-out-status",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"in-out-status"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "post mail",
+					"item": [
+						{
+							"name": "post mail",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "post_id",
+											"value": "1123",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "tomnjerry8963@gmail.com",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/post-mail",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"post-mail"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "set-device-token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json()",
+									"pm.environment.set('token', response.data.token)",
+									"pm.environment.set('refresh_token', response.data.refresh_token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "device_token",
+									"value": "000d",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/admin/set-device-token",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"set-device-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "site setting",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/api/admin/site-setting",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"site-setting"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json()",
+									"pm.environment.set('token', response.data.token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "scodus@admin.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://bijayniraula.com.np/api/admin/login",
+							"protocol": "https",
+							"host": [
+								"bijayniraula",
+								"com",
+								"np"
+							],
+							"path": [
+								"api",
+								"admin",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "public",
+			"item": [
+				{
+					"name": "Ward",
+					"item": [
+						{
+							"name": "get all active wards",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/ward",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"ward"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Complain",
+					"item": [
+						{
+							"name": "get all complains",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/complain",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"complain"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create complain",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "full_name",
+											"value": "Bishal Gurung",
+											"type": "text"
+										},
+										{
+											"key": "subject",
+											"value": "Subject 1",
+											"type": "text"
+										},
+										{
+											"key": "complain",
+											"value": "This is a complain",
+											"type": "text"
+										},
+										{
+											"key": "phone_number",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "ward_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "tole",
+											"value": "Tole here",
+											"type": "text"
+										},
+										{
+											"key": "complain_type_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "documents[]",
+											"type": "file",
+											"src": "/C:/Users/August/Downloads/Compressed/Bleach - Shooting Star (Title Song).mp4"
+										},
+										{
+											"key": "documents[]",
+											"type": "file",
+											"src": "/C:/Users/August/Downloads/Compressed/test-images/1.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/complain",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"complain"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get single complain",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/complain/:complain_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"complain",
+										":complain_id"
+									],
+									"variable": [
+										{
+											"key": "complain_id",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Device Token",
+					"item": [
+						{
+							"name": "first_or_create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "device_token",
+											"value": "ejevikjyR7qa5WBVEufJi8:APA91bESgZ3_2bM9Y0B0jXe8xReuOW-0IOY6QDWKqzEvduSHqOwy_CwoDwXNfcb9MJuFxZVIjcH5wgxMCvXafxNfUlgo8jePcZVJEnnYpbBYHj5sKjUd1Eq3l4eDhK6x_5fD9GiovyBK",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/device-token",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"device-token"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Complain Type",
+					"item": [
+						{
+							"name": "get all complain types",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/complain-type",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"complain-type"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get single complain type",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/complain-type/:complain_type_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"complain-type",
+										":complain_type_id"
+									],
+									"variable": [
+										{
+											"key": "complain_type_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "crm",
+					"item": [
+						{
+							"name": "get all crm types",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/crm-type",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"crm-type"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all crms",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/crm/:crm_type_id?start_date=2023-05-29&end_date=2023-06-28",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"crm",
+										":crm_type_id"
+									],
+									"query": [
+										{
+											"key": "start_date",
+											"value": "2023-05-29"
+										},
+										{
+											"key": "end_date",
+											"value": "2023-06-28"
+										}
+									],
+									"variable": [
+										{
+											"key": "crm_type_id",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get single crm",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/crm/:crm_id/show",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"crm",
+										":crm_id",
+										"show"
+									],
+									"variable": [
+										{
+											"key": "crm_id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Member",
+					"item": [
+						{
+							"name": "get members list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/member",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"member"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Site Setting",
+					"item": [
+						{
+							"name": "index",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/site-setting",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"site-setting"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Service",
+					"item": [
+						{
+							"name": "get all services",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/service?department_id=",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"service"
+									],
+									"query": [
+										{
+											"key": "department_id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get single service",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/service/:service_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"service",
+										":service_id"
+									],
+									"variable": [
+										{
+											"key": "service_id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Erecommendation User",
+					"item": [
+						{
+							"name": "old method",
+							"item": [
+								{
+									"name": "check user",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"const response = pm.response.json()\r",
+													"pm.environment.set('otp', response.data.otp)\r",
+													"pm.environment.set('phone', response.data.phone)"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "phone",
+													"value": "9812775137",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/erecommendation-user/check",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"erecommendation-user",
+												"check"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "otp submit",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"const response = pm.response.json()\r",
+													"pm.environment.set('erecommendation_user_token', response.data.tokenData.token)"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "phone",
+													"value": "{{phone}}",
+													"type": "text"
+												},
+												{
+													"key": "otp",
+													"value": "{{otp}}",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/erecommendation-user/otp",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"erecommendation-user",
+												"otp"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "register",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = pm.response.json()",
+											"pm.environment.set('token', response.data.token)",
+											"pm.environment.set('refresh_token', response.data.refresh_token)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "phone",
+											"value": "9812775137",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "P@ssw0rd",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "P@ssw0rd",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/erecommendation/register",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"erecommendation",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "account-verification",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "phone",
+											"value": "9812775137",
+											"type": "text"
+										},
+										{
+											"key": "otp",
+											"value": "1961",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/erecommendation/account-verification",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"erecommendation",
+										"account-verification"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "resend-account-verification-otp-token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "phone",
+											"value": "9812775137",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/erecommendation/resend-account-verification-otp",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"erecommendation",
+										"resend-account-verification-otp"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"const response = pm.response.json()",
+											"pm.environment.set('token', response.data.token)",
+											"pm.environment.set('refresh_token', response.data.refresh_token)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "phone",
+											"value": "9812775137",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "P@ssw0rd",
+											"type": "text"
+										},
+										{
+											"key": "device_token",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/erecommendation/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"erecommendation",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "user-detail",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/erecommendation/user-detail",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"erecommendation",
+										"user-detail"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "logout",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/erecommendation/logout",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"erecommendation",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "refresh_token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = pm.response.json()\r",
+											"pm.environment.set('token', response.data.token)\r",
+											"pm.environment.set('refresh_token', response.data.refresh_token)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "refresh_token",
+											"value": "{{refresh_token}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/erecommendation/refresh-token",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"erecommendation",
+										"refresh-token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "change password",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "PUT",
+											"type": "text"
+										},
+										{
+											"key": "old_password",
+											"value": "P@ssw0rd0",
+											"type": "text"
+										},
+										{
+											"key": "new_password",
+											"value": "P@ssw0rd",
+											"type": "text"
+										},
+										{
+											"key": "new_password_confirmation",
+											"value": "P@ssw0rd",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/erecommendation/change-password",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"erecommendation",
+										"change-password"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "reset password otp token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "phone",
+											"value": "9812775137",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/erecommendation/reset-password-otp-token",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"erecommendation",
+										"reset-password-otp-token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "reset password otp check",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "otp",
+											"value": "9765",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "9812775137",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/erecommendation/reset-password-otp-check",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"erecommendation",
+										"reset-password-otp-check"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "reset password",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "password",
+											"value": "P@ssw0rd",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "P@ssw0rd",
+											"type": "text"
+										},
+										{
+											"key": "otp",
+											"value": "9765",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "9812775137",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/erecommendation/reset-password",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"erecommendation",
+										"reset-password"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "set-device-token-of-user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "device_token",
+											"value": "000000000",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/erecommendation/set-device-token",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"erecommendation",
+										"set-device-token"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Erecommendation Form Type",
+					"item": [
+						{
+							"name": "list",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/erecommendation-form-type",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"erecommendation-form-type"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "single",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/erecommendation-form-type/:erecommendation_form_type",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"erecommendation-form-type",
+										":erecommendation_form_type"
+									],
+									"variable": [
+										{
+											"key": "erecommendation_form_type",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Erecommendation Form",
+					"item": [
+						{
+							"name": "list",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/:erecommendation_form_type_id/erecommendation-form",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										":erecommendation_form_type_id",
+										"erecommendation-form"
+									],
+									"variable": [
+										{
+											"key": "erecommendation_form_type_id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "single",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/:erecommendation_form_type_id/erecommendation-form/:erecommendation_form",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										":erecommendation_form_type_id",
+										"erecommendation-form",
+										":erecommendation_form"
+									],
+									"variable": [
+										{
+											"key": "erecommendation_form_type_id",
+											"value": "2"
+										},
+										{
+											"key": "erecommendation_form",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "store",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "A Bahadur B ",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "a@b.com",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "address",
+											"value": "abey",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "service_provider_name",
+											"value": "XYZ Hos",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "service_provider_address",
+											"value": "zyx galli",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "disease_name",
+											"value": "Rog",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "ward_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "citizenship_front",
+											"type": "file",
+											"src": "/C:/Users/August/Downloads/2.jpeg",
+											"disabled": true
+										},
+										{
+											"key": "citizenship_back",
+											"type": "file",
+											"src": "/C:/Users/August/Downloads/1.jpeg",
+											"disabled": true
+										},
+										{
+											"key": "application",
+											"type": "file",
+											"src": "/C:/Users/August/Downloads/1.jpeg",
+											"disabled": true
+										},
+										{
+											"key": "hospital_recommendation",
+											"type": "file",
+											"src": "/C:/Users/August/Downloads/1.jpeg",
+											"disabled": true
+										},
+										{
+											"key": "dob",
+											"value": "2002-10-12",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/Scodus/Downloads/Wings factory.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/:erecommendation_form_type_id/erecommendation-form",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										":erecommendation_form_type_id",
+										"erecommendation-form"
+									],
+									"variable": [
+										{
+											"key": "erecommendation_form_type_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "patch",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "A Bahadur B edit 010",
+											"type": "text"
+										},
+										{
+											"key": "citizenship_number",
+											"value": "0022-011000",
+											"type": "text"
+										},
+										{
+											"key": "gender",
+											"value": "male",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "9876543210",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "a@b.com",
+											"type": "text"
+										},
+										{
+											"key": "tole",
+											"value": "abey",
+											"type": "text"
+										},
+										{
+											"key": "service_provider_name",
+											"value": "XYZ Hos",
+											"type": "text"
+										},
+										{
+											"key": "service_provider_address",
+											"value": "zyx galli",
+											"type": "text"
+										},
+										{
+											"key": "disease_name",
+											"value": "Rog",
+											"type": "text"
+										},
+										{
+											"key": "ward_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "citizenship_front",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "citizenship_back",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "application",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "hospital_recommendation",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "dob",
+											"value": "2000-10-05",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/:erecommendation_form_type_id/erecommendation-form/:erecommendation_form",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										":erecommendation_form_type_id",
+										"erecommendation-form",
+										":erecommendation_form"
+									],
+									"variable": [
+										{
+											"key": "erecommendation_form_type_id",
+											"value": "2"
+										},
+										{
+											"key": "erecommendation_form",
+											"value": "6"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/:erecommendation_form_type_id/erecommendation-form/:erecommendation_form",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										":erecommendation_form_type_id",
+										"erecommendation-form",
+										":erecommendation_form"
+									],
+									"variable": [
+										{
+											"key": "erecommendation_form_type_id",
+											"value": "2"
+										},
+										{
+											"key": "erecommendation_form",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "list all",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/erecommendation-form",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"erecommendation-form"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "single all",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/erecommendation-form/:erecommendation_form",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"erecommendation-form",
+										":erecommendation_form"
+									],
+									"variable": [
+										{
+											"key": "erecommendation_form",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Emergency Services",
+					"item": [
+						{
+							"name": "Emergency Service",
+							"item": [
+								{
+									"name": "list",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/emergency-service",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"emergency-service"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "single",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/emergency-service/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"emergency-service",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "2"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Emergency Service Provider",
+							"item": [
+								{
+									"name": "list",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/emergency-service-provider?emergency_service_id=",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"emergency-service-provider"
+											],
+											"query": [
+												{
+													"key": "emergency_service_id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "single",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/emergency-service-provider/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"emergency-service-provider",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "General Services",
+					"item": [
+						{
+							"name": "Education Service",
+							"item": [
+								{
+									"name": "list",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/education-service?ward_id=",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"education-service"
+											],
+											"query": [
+												{
+													"key": "ward_id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "single",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/education-service/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"education-service",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Health Service",
+							"item": [
+								{
+									"name": "list",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/health-service?ward_id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"health-service"
+											],
+											"query": [
+												{
+													"key": "ward_id",
+													"value": null
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "single",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/health-service/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"health-service",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Agriculture Service",
+							"item": [
+								{
+									"name": "list",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/agriculture-service?ward_id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"agriculture-service"
+											],
+											"query": [
+												{
+													"key": "ward_id",
+													"value": null
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "single",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/agriculture-service/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"agriculture-service",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "TouristArea Service",
+							"item": [
+								{
+									"name": "list",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/tourist-area-service?ward_id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"tourist-area-service"
+											],
+											"query": [
+												{
+													"key": "ward_id",
+													"value": null
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "single",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/tourist-area-service/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"tourist-area-service",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Public Toilet Service",
+							"item": [
+								{
+									"name": "list",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/public-toilet-service?ward_id=",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"public-toilet-service"
+											],
+											"query": [
+												{
+													"key": "ward_id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "single",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/public-toilet-service/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"public-toilet-service",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "2"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "v2",
+			"item": [
+				{
+					"name": "homepage",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/v2/homepage",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"homepage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "member",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v2/member?department_id=&ward_id=",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"member"
+							],
+							"query": [
+								{
+									"key": "department_id",
+									"value": ""
+								},
+								{
+									"key": "ward_id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ward",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v2/ward",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"ward"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "department",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v2/department",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"department"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "service",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v2/service?department_id=",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"service"
+							],
+							"query": [
+								{
+									"key": "department_id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "album",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v2/album",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"album"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all medias (albums and videos)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v2/media/all",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"media",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get album image list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v2/album/:album_id/image-list",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"album",
+								":album_id",
+								"image-list"
+							],
+							"variable": [
+								{
+									"key": "album_id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "video",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v2/video",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"video"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get crms by crm type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v2/crm/:crm_type_id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"crm",
+								":crm_type_id"
+							],
+							"query": [
+								{
+									"key": "start_date",
+									"value": "2023-04-26",
+									"disabled": true
+								},
+								{
+									"key": "end_date",
+									"value": "2023-06-28",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "crm_type_id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get single crm",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v2/crm/:crm_id/show",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"crm",
+								":crm_id",
+								"show"
+							],
+							"variable": [
+								{
+									"key": "crm_id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store contact us",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Bishal Gurung\",\r\n    \"phone_no\": \"123456789\",\r\n    \"message\": \"ladwjdklajdwakljdwakldj\",\r\n    \"ward_id\": null,\r\n    \"tole\": \"tole\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v2/contact-us",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"contact-us"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all complain types",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/v2/complain-type",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"complain-type"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store complain",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "full_name",
+									"value": "Bishal Gurung",
+									"type": "text"
+								},
+								{
+									"key": "subject",
+									"value": "Subject 1",
+									"type": "text"
+								},
+								{
+									"key": "complain",
+									"value": "This is a complain",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "ward_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "tole",
+									"value": "Tole here",
+									"type": "text"
+								},
+								{
+									"key": "complain_type_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "documents[]",
+									"type": "file",
+									"src": "/C:/Users/August/Downloads/d0f47a1c6bfb3f115b2788ad71fc6bd9.doc"
+								},
+								{
+									"key": "documents[]",
+									"type": "file",
+									"src": "/C:/Users/August/Downloads/Compressed/test-images/2.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/v2/complain",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"complain"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "send crm as mail",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"post_id\": 50,\r\n    \"email\": \"grgbishal360@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/crm/mail",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"crm",
+								"mail"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
