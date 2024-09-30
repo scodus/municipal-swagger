@@ -74,60 +74,6 @@
 							"response": []
 						},
 						{
-							"name": "login ward",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"const response = pm.response.json()",
-											"pm.environment.set('token', response.data.token)",
-											"pm.environment.set('refresh_token', response.data.refresh_token)"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "email",
-											"value": "rmurray@example.net",
-											"type": "text"
-										},
-										{
-											"key": "password",
-											"value": "password",
-											"type": "text"
-										},
-										{
-											"key": "device_token",
-											"value": "",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "ward1.{{url}}/api/admin/login",
-									"host": [
-										"ward1",
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"admin",
-										"login"
-									]
-								}
-							},
-							"response": []
-						},
-						{
 							"name": "logout",
 							"event": [
 								{

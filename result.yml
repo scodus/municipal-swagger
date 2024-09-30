@@ -1,0 +1,2169 @@
+openapi: 3.0.0
+info:
+  title: Accounting Swagger
+  description: Swagger
+  version: '1.0'
+  x-logo:
+    url: https://github.com/joolfe/logoBanner.png
+    backgroundColor: '#FFFFFF'
+    altText: logo
+  termsOfService: '#'
+  contact:
+    name: Scodus
+    url: https://scodus.com
+    email: scodusnp@gmail.com
+  license:
+    name: MIT
+    url: https://es.wikipedia.org/wiki/Licencia_MIT
+servers:
+  - url: https://kailashmun.com
+    description: kailashmun server
+  - url: https://tinpatanmun.com
+    description: tinpatanmun server
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+    noauthAuth:
+      type: http
+      scheme: noauth
+tags:
+  - name: Admin
+  - name: Admin > Authentication
+  - name: Admin > crm type
+  - name: Admin > crm
+  - name: Admin > department
+  - name: Admin > service
+  - name: Admin > complain
+  - name: Admin > Complain Type
+  - name: Admin > member
+  - name: Admin > user profile
+  - name: Admin > in out status
+  - name: Admin > post mail
+  - name: public
+  - name: public > Ward
+  - name: public > Complain
+  - name: public > Device Token
+  - name: public > Complain Type
+  - name: public > crm
+  - name: public > Member
+  - name: public > Site Setting
+  - name: public > Service
+  - name: public > Erecommendation User
+  - name: public > Erecommendation User > old method
+  - name: public > Erecommendation Form Type
+  - name: public > Erecommendation Form
+  - name: public > Emergency Services
+  - name: public > Emergency Services > Emergency Service
+  - name: public > Emergency Services > Emergency Service Provider
+  - name: public > General Services
+  - name: public > General Services > Education Service
+  - name: public > General Services > Health Service
+  - name: public > General Services > Agriculture Service
+  - name: public > General Services > TouristArea Service
+  - name: public > General Services > Public Toilet Service
+  - name: v2
+paths:
+  /api/admin/login:
+    post:
+      tags:
+        - Admin
+      summary: test
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: scodus@admin.com
+                password:
+                  type: string
+                  example: password
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/logout:
+    get:
+      tags:
+        - Admin > Authentication
+      summary: logout
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/change-password:
+    post:
+      tags:
+        - Admin > Authentication
+      summary: change old password
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                old_password:
+                  type: string
+                  example: password
+                password:
+                  type: string
+                  example: P@ssw0rd
+                password_confirmation:
+                  type: string
+                  example: P@ssw0rd
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/crm-type:
+    get:
+      tags:
+        - Admin > crm type
+      summary: list
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Admin > crm type
+      summary: store
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: title
+                nepali_title:
+                  type: string
+                  example: nepali title
+                icon:
+                  type: string
+                  format: binary
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/crm-type/{crm_type_id}:
+    post:
+      tags:
+        - Admin > crm type
+      summary: update
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: title edit
+                nepali_title:
+                  type: string
+                  example: nepali title edit
+                icon:
+                  type: string
+                  format: binary
+                _method:
+                  type: string
+                  example: patch
+                remove_icon:
+                  type: string
+                  description: nullable, 1 for removing icon
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: crm_type_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '9'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > crm type
+      summary: delete
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: crm_type_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '9'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/crm/{crm_type_id}:
+    get:
+      tags:
+        - Admin > crm
+      summary: list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: start_date
+          in: query
+          schema:
+            type: string
+          example: '2023-05-29'
+        - name: end_date
+          in: query
+          schema:
+            type: string
+          example: '2023-06-28'
+        - name: crm_type_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Admin > crm
+      summary: store
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: title
+                description:
+                  type: string
+                  example: description
+                image:
+                  type: string
+                  format: binary
+                file:
+                  type: string
+                  format: binary
+                sub_title:
+                  type: string
+                  example: sub-title
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: crm_type_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/crm/{crm_id}/show:
+    get:
+      tags:
+        - Admin > crm
+      summary: single show
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: crm_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '15'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/crm/{crm_id}/{crm_type_id}:
+    post:
+      tags:
+        - Admin > crm
+      summary: update
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                _method:
+                  type: string
+                  example: patch
+                title:
+                  type: string
+                  example: title edit
+                description:
+                  type: string
+                  example: description edit
+                image:
+                  type: string
+                  format: binary
+                file:
+                  type: string
+                  format: binary
+                remove_image:
+                  type: string
+                  description: nullable, 1 for removing icon
+                remove_file:
+                  type: string
+                  description: nullable, 1 for removing icon
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: crm_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '15'
+        - name: crm_type_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > crm
+      summary: delete
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: crm_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '15'
+        - name: crm_type_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/department:
+    get:
+      tags:
+        - Admin > department
+      summary: list
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/department/{department_id}:
+    get:
+      tags:
+        - Admin > department
+      summary: single show
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: department_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/service:
+    get:
+      tags:
+        - Admin > service
+      summary: list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: department_id
+          in: query
+          schema:
+            type: integer
+          example: '2'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Admin > service
+      summary: store
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: title
+                department_id:
+                  type: string
+                  description: nullable
+                cost:
+                  type: integer
+                  example: '123'
+                member[]:
+                  type: integer
+                  example: '2'
+                required_document:
+                  type: string
+                  description: text
+                  example: sa df
+                supporting_document:
+                  type: string
+                  description: text
+                  example: asd f
+                process:
+                  type: string
+                  description: text
+                  example: sadf asd
+                time:
+                  type: string
+                  description: text
+                  example: a sdf
+                icon:
+                  type: string
+                  format: binary
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/service/{service_id}:
+    get:
+      tags:
+        - Admin > service
+      summary: single show
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: service_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Admin > service
+      summary: update
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                _method:
+                  type: string
+                  example: patch
+                title:
+                  type: string
+                  example: title edit
+                department_id:
+                  type: string
+                cost:
+                  type: string
+                member[]:
+                  type: integer
+                  example: '2'
+                required_document:
+                  type: string
+                  description: text
+                supporting_document:
+                  type: string
+                  description: text
+                process:
+                  type: string
+                  description: text
+                time:
+                  type: string
+                  description: text
+                icon:
+                  type: string
+                  format: binary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: service_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > service
+      summary: delete
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: service_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/complain:
+    get:
+      tags:
+        - Admin > complain
+      summary: list
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/complain/{complain_id}:
+    get:
+      tags:
+        - Admin > complain
+      summary: single show
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: complain_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '12'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/complain-type:
+    get:
+      tags:
+        - Admin > Complain Type
+      summary: list
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Admin > Complain Type
+      summary: store
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: complain type 66
+                status:
+                  type: string
+                  example: active
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/complain-type/{complain_type_id}:
+    get:
+      tags:
+        - Admin > Complain Type
+      summary: single show
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: complain_type_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Admin > Complain Type
+      summary: update
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                _method:
+                  type: string
+                  example: patch
+                title:
+                  type: string
+                  example: complain type 5 ed0
+                status:
+                  type: string
+                  example: inactive
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: complain_type_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Complain Type
+      summary: delete
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: complain_type_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '6'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/complain-type/status/{complain_type_id}:
+    post:
+      tags:
+        - Admin > Complain Type
+      summary: status change
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                _method:
+                  type: string
+                  example: patch
+                status:
+                  type: string
+                  example: active
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: complain_type_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/member:
+    get:
+      tags:
+        - Admin > member
+      summary: list
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/profile:
+    get:
+      tags:
+        - Admin > user profile
+      summary: get update
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Admin > user profile
+      summary: profile update
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: required | send old value if no changes needed
+                  example: testtest
+                number:
+                  type: string
+                  description: required | send old value if no changes needed
+                  example: 234562345ww
+                say:
+                  type: string
+                  description: nullable
+                  example: qqwe
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/in-out-status:
+    post:
+      tags:
+        - Admin > in out status
+      summary: update
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: integer
+                  description: 1 || 0
+                  example: '1'
+                reason:
+                  type: string
+                  description: write any reason here
+                  example: a valid reason
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > in out status
+      summary: get status
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/post-mail:
+    post:
+      tags:
+        - Admin > post mail
+      summary: post mail
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                post_id:
+                  type: integer
+                  example: '1123'
+                email:
+                  type: string
+                  example: tomnjerry8963@gmail.com
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/set-device-token:
+    post:
+      tags:
+        - Admin
+      summary: set-device-token
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                device_token:
+                  type: string
+                  example: 000d
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/site-setting:
+    get:
+      tags:
+        - Admin
+      summary: site setting
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/ward:
+    get:
+      tags:
+        - public > Ward
+      summary: get all active wards
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/complain:
+    get:
+      tags:
+        - public > Complain
+      summary: get all complains
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - public > Complain
+      summary: create complain
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                full_name:
+                  type: string
+                  example: Bishal Gurung
+                subject:
+                  type: string
+                  example: Subject 1
+                complain:
+                  type: string
+                  example: This is a complain
+                phone_number:
+                  type: string
+                ward_id:
+                  type: integer
+                  example: '1'
+                tole:
+                  type: string
+                  example: Tole here
+                complain_type_id:
+                  type: integer
+                  example: '1'
+                documents[]:
+                  type: string
+                  format: binary
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/complain/{complain_id}:
+    get:
+      tags:
+        - public > Complain
+      summary: get single complain
+      parameters:
+        - name: complain_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '4'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/device-token:
+    post:
+      tags:
+        - public > Device Token
+      summary: first_or_create
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                device_token:
+                  type: string
+                  example: >-
+                    ejevikjyR7qa5WBVEufJi8:APA91bESgZ3_2bM9Y0B0jXe8xReuOW-0IOY6QDWKqzEvduSHqOwy_CwoDwXNfcb9MJuFxZVIjcH5wgxMCvXafxNfUlgo8jePcZVJEnnYpbBYHj5sKjUd1Eq3l4eDhK6x_5fD9GiovyBK
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/complain-type:
+    get:
+      tags:
+        - public > Complain Type
+      summary: get all complain types
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/complain-type/{complain_type_id}:
+    get:
+      tags:
+        - public > Complain Type
+      summary: get single complain type
+      parameters:
+        - name: complain_type_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/crm-type:
+    get:
+      tags:
+        - public > crm
+      summary: get all crm types
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/crm/{crm_type_id}:
+    get:
+      tags:
+        - public > crm
+      summary: get all crms
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: start_date
+          in: query
+          schema:
+            type: string
+          example: '2023-05-29'
+        - name: end_date
+          in: query
+          schema:
+            type: string
+          example: '2023-06-28'
+        - name: crm_type_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '10'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/crm/{crm_id}/show:
+    get:
+      tags:
+        - public > crm
+      summary: get single crm
+      parameters:
+        - name: crm_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '2'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/member:
+    get:
+      tags:
+        - public > Member
+      summary: get members list
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/site-setting:
+    get:
+      tags:
+        - public > Site Setting
+      summary: index
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/service:
+    get:
+      tags:
+        - public > Service
+      summary: get all services
+      parameters:
+        - name: department_id
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/service/{service_id}:
+    get:
+      tags:
+        - public > Service
+      summary: get single service
+      parameters:
+        - name: service_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '2'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/erecommendation-user/check:
+    post:
+      tags:
+        - public > Erecommendation User > old method
+      summary: check user
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                phone:
+                  type: integer
+                  example: '9812775137'
+      security:
+        - noauthAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/erecommendation-user/otp:
+    post:
+      tags:
+        - public > Erecommendation User > old method
+      summary: otp submit
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                phone:
+                  type: string
+                  example: '{{phone}}'
+                otp:
+                  type: string
+                  example: '{{otp}}'
+      security:
+        - noauthAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/erecommendation/register:
+    post:
+      tags:
+        - public > Erecommendation User
+      summary: register
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                phone:
+                  type: integer
+                  example: '9812775137'
+                password:
+                  type: string
+                  example: P@ssw0rd
+                password_confirmation:
+                  type: string
+                  example: P@ssw0rd
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/erecommendation/account-verification:
+    post:
+      tags:
+        - public > Erecommendation User
+      summary: account-verification
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                phone:
+                  type: integer
+                  example: '9812775137'
+                otp:
+                  type: integer
+                  example: '1961'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/erecommendation/resend-account-verification-otp:
+    post:
+      tags:
+        - public > Erecommendation User
+      summary: resend-account-verification-otp-token
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                phone:
+                  type: integer
+                  example: '9812775137'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/erecommendation/login:
+    post:
+      tags:
+        - public > Erecommendation User
+      summary: login
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                phone:
+                  type: integer
+                  example: '9812775137'
+                password:
+                  type: string
+                  example: P@ssw0rd
+                device_token:
+                  type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/erecommendation/user-detail:
+    get:
+      tags:
+        - public > Erecommendation User
+      summary: user-detail
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/erecommendation/logout:
+    post:
+      tags:
+        - public > Erecommendation User
+      summary: logout
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/erecommendation/refresh-token:
+    post:
+      tags:
+        - public > Erecommendation User
+      summary: refresh_token
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                refresh_token:
+                  type: string
+                  example: '{{refresh_token}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/erecommendation/change-password:
+    post:
+      tags:
+        - public > Erecommendation User
+      summary: change password
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                _method:
+                  type: string
+                  example: PUT
+                old_password:
+                  type: string
+                  example: P@ssw0rd0
+                new_password:
+                  type: string
+                  example: P@ssw0rd
+                new_password_confirmation:
+                  type: string
+                  example: P@ssw0rd
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/erecommendation/reset-password-otp-token:
+    post:
+      tags:
+        - public > Erecommendation User
+      summary: reset password otp token
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                phone:
+                  type: integer
+                  example: '9812775137'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/erecommendation/reset-password-otp-check:
+    post:
+      tags:
+        - public > Erecommendation User
+      summary: reset password otp check
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                otp:
+                  type: integer
+                  example: '9765'
+                phone:
+                  type: integer
+                  example: '9812775137'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/erecommendation/reset-password:
+    post:
+      tags:
+        - public > Erecommendation User
+      summary: reset password
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                  example: P@ssw0rd
+                password_confirmation:
+                  type: string
+                  example: P@ssw0rd
+                otp:
+                  type: integer
+                  example: '9765'
+                phone:
+                  type: integer
+                  example: '9812775137'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/erecommendation/set-device-token:
+    post:
+      tags:
+        - public > Erecommendation User
+      summary: set-device-token-of-user
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                device_token:
+                  type: integer
+                  example: '000000000'
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/erecommendation-form-type:
+    get:
+      tags:
+        - public > Erecommendation Form Type
+      summary: list
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/erecommendation-form-type/{erecommendation_form_type}:
+    get:
+      tags:
+        - public > Erecommendation Form Type
+      summary: single
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: erecommendation_form_type
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '2'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/{erecommendation_form_type_id}/erecommendation-form:
+    get:
+      tags:
+        - public > Erecommendation Form
+      summary: list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: erecommendation_form_type_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '2'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - public > Erecommendation Form
+      summary: store
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: 'A Bahadur B '
+                email:
+                  type: string
+                  example: a@b.com
+                address:
+                  type: string
+                  example: abey
+                service_provider_name:
+                  type: string
+                  example: XYZ Hos
+                service_provider_address:
+                  type: string
+                  example: zyx galli
+                disease_name:
+                  type: string
+                  example: Rog
+                ward_id:
+                  type: integer
+                  example: '1'
+                citizenship_front:
+                  type: string
+                  format: binary
+                citizenship_back:
+                  type: string
+                  format: binary
+                application:
+                  type: string
+                  format: binary
+                hospital_recommendation:
+                  type: string
+                  format: binary
+                dob:
+                  type: string
+                  example: '2002-10-12'
+                image:
+                  type: string
+                  format: binary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: erecommendation_form_type_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/{erecommendation_form_type_id}/erecommendation-form/{erecommendation_form}:
+    get:
+      tags:
+        - public > Erecommendation Form
+      summary: single
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: erecommendation_form_type_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '2'
+        - name: erecommendation_form
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - public > Erecommendation Form
+      summary: update
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                _method:
+                  type: string
+                  example: patch
+                name:
+                  type: string
+                  example: A Bahadur B edit 010
+                citizenship_number:
+                  type: string
+                  example: 0022-011000
+                gender:
+                  type: string
+                  example: male
+                phone:
+                  type: integer
+                  example: '9876543210'
+                email:
+                  type: string
+                  example: a@b.com
+                tole:
+                  type: string
+                  example: abey
+                service_provider_name:
+                  type: string
+                  example: XYZ Hos
+                service_provider_address:
+                  type: string
+                  example: zyx galli
+                disease_name:
+                  type: string
+                  example: Rog
+                ward_id:
+                  type: integer
+                  example: '1'
+                citizenship_front:
+                  type: string
+                  format: binary
+                citizenship_back:
+                  type: string
+                  format: binary
+                application:
+                  type: string
+                  format: binary
+                hospital_recommendation:
+                  type: string
+                  format: binary
+                dob:
+                  type: string
+                  example: '2000-10-05'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: erecommendation_form_type_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '2'
+        - name: erecommendation_form
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '6'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - public > Erecommendation Form
+      summary: delete
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: erecommendation_form_type_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '2'
+        - name: erecommendation_form
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '10'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/erecommendation-form:
+    get:
+      tags:
+        - public > Erecommendation Form
+      summary: list all
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/erecommendation-form/{erecommendation_form}:
+    get:
+      tags:
+        - public > Erecommendation Form
+      summary: single all
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: erecommendation_form
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/emergency-service:
+    get:
+      tags:
+        - public > Emergency Services > Emergency Service
+      summary: list
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/emergency-service/{id}:
+    get:
+      tags:
+        - public > Emergency Services > Emergency Service
+      summary: single
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '2'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/emergency-service-provider:
+    get:
+      tags:
+        - public > Emergency Services > Emergency Service Provider
+      summary: list
+      parameters:
+        - name: emergency_service_id
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/emergency-service-provider/{id}:
+    get:
+      tags:
+        - public > Emergency Services > Emergency Service Provider
+      summary: single
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/education-service:
+    get:
+      tags:
+        - public > General Services > Education Service
+      summary: list
+      parameters:
+        - name: ward_id
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/education-service/{id}:
+    get:
+      tags:
+        - public > General Services > Education Service
+      summary: single
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/health-service:
+    get:
+      tags:
+        - public > General Services > Health Service
+      summary: list
+      parameters:
+        - name: ward_id
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/health-service/{id}:
+    get:
+      tags:
+        - public > General Services > Health Service
+      summary: single
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/agriculture-service:
+    get:
+      tags:
+        - public > General Services > Agriculture Service
+      summary: list
+      parameters:
+        - name: ward_id
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/agriculture-service/{id}:
+    get:
+      tags:
+        - public > General Services > Agriculture Service
+      summary: single
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/tourist-area-service:
+    get:
+      tags:
+        - public > General Services > TouristArea Service
+      summary: list
+      parameters:
+        - name: ward_id
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/tourist-area-service/{id}:
+    get:
+      tags:
+        - public > General Services > TouristArea Service
+      summary: single
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/public-toilet-service:
+    get:
+      tags:
+        - public > General Services > Public Toilet Service
+      summary: list
+      parameters:
+        - name: ward_id
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/public-toilet-service/{id}:
+    get:
+      tags:
+        - public > General Services > Public Toilet Service
+      summary: single
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '2'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/homepage:
+    get:
+      tags:
+        - v2
+      summary: homepage
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/member:
+    get:
+      tags:
+        - v2
+      summary: member
+      parameters:
+        - name: department_id
+          in: query
+          schema:
+            type: string
+        - name: ward_id
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/ward:
+    get:
+      tags:
+        - v2
+      summary: ward
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/department:
+    get:
+      tags:
+        - v2
+      summary: department
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/service:
+    get:
+      tags:
+        - v2
+      summary: service
+      parameters:
+        - name: department_id
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/album:
+    get:
+      tags:
+        - v2
+      summary: album
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/media/all:
+    get:
+      tags:
+        - v2
+      summary: get all medias (albums and videos)
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/album/{album_id}/image-list:
+    get:
+      tags:
+        - v2
+      summary: get album image list
+      parameters:
+        - name: album_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '3'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/video:
+    get:
+      tags:
+        - v2
+      summary: video
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/crm/{crm_type_id}:
+    get:
+      tags:
+        - v2
+      summary: get crms by crm type
+      parameters:
+        - name: crm_type_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/crm/{crm_id}/show:
+    get:
+      tags:
+        - v2
+      summary: get single crm
+      parameters:
+        - name: crm_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '3'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/contact-us:
+    post:
+      tags:
+        - v2
+      summary: store contact us
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Bishal Gurung
+                phone_no: '123456789'
+                message: ladwjdklajdwakljdwakldj
+                ward_id: null
+                tole: tole
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/complain-type:
+    get:
+      tags:
+        - v2
+      summary: get all complain types
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/complain:
+    post:
+      tags:
+        - v2
+      summary: store complain
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                full_name:
+                  type: string
+                  example: Bishal Gurung
+                subject:
+                  type: string
+                  example: Subject 1
+                complain:
+                  type: string
+                  example: This is a complain
+                phone_number:
+                  type: string
+                ward_id:
+                  type: integer
+                  example: '1'
+                tole:
+                  type: string
+                  example: Tole here
+                complain_type_id:
+                  type: integer
+                  example: '1'
+                documents[]:
+                  type: string
+                  format: binary
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/crm/mail:
+    post:
+      tags:
+        - v2
+      summary: send crm as mail
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                post_id: 50
+                email: grgbishal360@gmail.com
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
